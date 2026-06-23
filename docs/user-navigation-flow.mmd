@@ -1,0 +1,38 @@
+flowchart TD
+  App[AppShell] --> RouteHome["/"]
+
+  RouteHome --> Dashboard[TaskDashboardScreen]
+  Dashboard --> Header[AppHeader]
+  Dashboard --> Actions[DashboardActions]
+  Dashboard --> List[TaskListSection]
+  Dashboard --> Feedback[FeedbackArea]
+
+  Actions --> CreateAction[CreateTaskButton]
+  Actions --> SortAction[SortByIceButton]
+
+  List --> Empty[EmptyState]
+  List --> TaskCards[TaskCardList]
+  TaskCards --> TaskCard[TaskCard]
+  TaskCard --> Status[StatusSelector]
+  TaskCard --> Delete[DeleteTaskAction]
+
+  CreateAction --> FormDialog[TaskFormDialog]
+  TaskCard --> EditDialog[TaskFormDialog]
+
+  FormDialog --> TaskFields[TaskFieldsSection]
+  FormDialog --> IceRequest[CalculateIceAction]
+  FormDialog --> IcePanel[IceSuggestionPanel]
+  FormDialog --> ManualIce[ManualIceFields]
+  FormDialog --> Confirm[ConfirmTaskAction]
+
+  Confirm --> Summary[TaskConfirmedSummary]
+  Summary --> Dashboard
+
+  Feedback --> Loading[LoadingState]
+  Feedback --> Error[ErrorAlert]
+
+  subgraph NavigationNotes[Notas de navegacion]
+    N1["No requiere React Router"]
+    N2["Dialogos y paneles son estados de UI"]
+    N3["Los datos viven en memoria local"]
+  end

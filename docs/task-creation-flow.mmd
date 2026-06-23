@@ -1,0 +1,34 @@
+flowchart TD
+  A([Entrada a la app]) --> B[TaskDashboardScreen]
+  B --> C[TaskListSection]
+  C --> D{Hay tareas?}
+  D -->|No| E[EmptyState: Sin tareas]
+  D -->|Si| F[TaskList: tareas ordenables]
+  E --> G[Crear tarea]
+  F --> G[Crear tarea]
+
+  G --> H[TaskFormDialog]
+  H --> I[Introducir titulo]
+  I --> J[Introducir descripcion]
+  J --> K{Formulario valido?}
+  K -->|No| L[Mostrar validacion en TextField]
+  L --> I
+  K -->|Si| M[Solicitar sugerencia ICE]
+
+  M --> N[Loading: calculando con IA]
+  N --> O{Respuesta IA valida?}
+  O -->|No| P[Mostrar error y habilitar edicion manual]
+  O -->|Si| Q[IceSuggestionPanel]
+
+  P --> R[Editar impacto, confianza y esfuerzo]
+  Q --> S[Revisar impacto, confianza, esfuerzo y motivo]
+  S --> T{Usuario quiere ajustar valores?}
+  T -->|Si| R
+  T -->|No| U[Confirmar sugerencia]
+  R --> V[Recalcular ICE localmente]
+  V --> U
+
+  U --> W[Guardar tarea en estado local]
+  W --> X[TaskConfirmedSummary]
+  X --> Y[Volver a listado]
+  Y --> C
