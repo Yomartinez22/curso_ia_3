@@ -1,0 +1,4 @@
+interface:
+  display_name: "Implement Implementation Task"
+  short_description: "Run the next MVP implementation task"
+  default_prompt: "Use $implement-implementation-task to detect and implement the next task from docs/implementation-tasks.md."
