@@ -1,0 +1,28 @@
+name: Main source guard
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+
+jobs:
+  main-source-guard:
+    name: main-source-guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require dev as source branch
+        shell: bash
+        run: |
+          if [ "${{ github.base_ref }}" != "main" ]; then
+            exit 0
+          fi
+
+          if [ "${{ github.head_ref }}" != "dev" ]; then
+            echo "Pull requests targeting main must come from dev."
+            exit 1
+          fi
