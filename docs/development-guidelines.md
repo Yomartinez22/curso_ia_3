@@ -175,3 +175,15 @@
 - [ ] No usar librerias de fechas sin necesidad real.
 
 - [ ] Cualquier libreria nueva debe justificar ahorro claro de complejidad.
+
+## Herramientas de calidad
+
+- [ ] Usar `npm run lint` para validar reglas de ESLint sobre React, TypeScript, hooks e importaciones.
+
+- [ ] Usar `npm run lint:fix` para aplicar correcciones seguras de ESLint.
+
+- [ ] Usar `npm run format:check` para comprobar formato con Prettier.
+
+- [ ] Usar `npm run format` para aplicar formato con Prettier.
+
+- [ ] Mantener `eslint-config-prettier` al final de la configuracion de ESLint para evitar conflictos con Prettier.
